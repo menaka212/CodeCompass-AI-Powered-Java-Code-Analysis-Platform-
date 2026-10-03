@@ -1,0 +1,12 @@
+spring.application.name=backend
+spring.datasource.url=jdbc:postgresql://localhost:5432/codecompass_db
+spring.datasource.username=postgres
+spring.datasource.password=${DB_PASSWORD}
+
+spring.jpa.hibernate.ddl-auto=update
+
+jwt.secret=${JWT_SECRET}
+github.token=${GITHUB_TOKEN}
+
+ollama.base-url=http://localhost:11434
+ollama.model=llama3.2:1b
