@@ -26,43 +26,43 @@ Analyzes Java source files from a GitHub repository without requiring the reposi
 
 ### Dashboard
 
-![alt text](image.png)
-![alt text](image-1.png)
+![alt text](docs/screenshots/image.png)
+![alt text](docs/screenshots/image-1.png)
 
 ### Architecture Map
 
-![alt text](image-2.png)
-![alt text](image-3.png)
+![alt text](docs/screenshots/image-2.png)
+![alt text](docs/screenshots/image-3.png)
 
 ### Dependencies
 
-![alt text](image-4.png)
+![alt text](docs/screenshots/image-4.png)
 
 ### API Explorer
 
-![alt text](image-5.png)
+![alt text](docs/screenshots/image-5.png)
 
 ### Call Flows
 
-![alt text](image-6.png)
+![alt text](docs/screenshots/image-6.png)
 
 ### Impact Analysis
 
-![alt text](image-7.png)
+![alt text](docs/screenshots/image-7.png)
 
 ### Projects of the User
 
-![alt text](image-8.png)
+![alt text](docs/screenshots/image-8.png)
 
 ### AI Code Assistant
 
-![alt text](image-9.png)
+![alt text](docs/screenshots/image-9.png)
 
 ### Visualization
 
-![alt text](image-10.png)
-![alt text](image-11.png)
-![alt text](image-12.png)
+![alt text](docs/screenshots/image-10.png)
+![alt text](docs/screenshots/image-11.png)
+![alt text](docs/screenshots/image-12.png)
 
 ## 🛠️ Tech Stack
 
