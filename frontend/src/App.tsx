@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 
 import Sidebar from "./components/Sidebar";
@@ -5,6 +6,7 @@ import Header from "./components/Header";
 import ImpactAnalysis from "./pages/ImpactAnalysis";
 import Visualizations from "./pages/Visualizations";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import CallFlows from "./pages/CallFlows";
 import Dashboard from "./pages/Dashboard";
 import Architecture from "./pages/Architecture";
@@ -15,127 +17,96 @@ import AIAssistant from "./pages/AIAssistant";
 import "./App.css";
 
 function App() {
+    const [activePage, setActivePage] = useState("dashboard");
 
-    const [activePage, setActivePage] =
-        useState("dashboard");
+    const [showRegister, setShowRegister] = useState(false);
 
-    const [isLoggedIn, setIsLoggedIn] =
-        useState(() => {
-
-            const token =
-                localStorage.getItem("token");
-
-            return !!token;
-
-        });
-
+    const [isLoggedIn, setIsLoggedIn] = useState(() => {
+        const token = localStorage.getItem("token");
+        return !!token;
+    });
 
     const handleLogin = () => {
-
         setIsLoggedIn(true);
-
+        setShowRegister(false);
         setActivePage("dashboard");
-
     };
-
 
     const handleLogout = () => {
-
         localStorage.removeItem("token");
-
         setIsLoggedIn(false);
-
+        setShowRegister(false);
     };
 
-
-    // ==============================
-    // LOGIN PAGE
-    // ==============================
-
+    // LOGIN AND REGISTRATION PAGES
     if (!isLoggedIn) {
+        if (showRegister) {
+            return (
+                <Register
+                    onBackToLogin={() => setShowRegister(false)}
+                />
+            );
+        }
 
         return (
-
             <Login
                 onLogin={handleLogin}
+                onRegister={() => setShowRegister(true)}
             />
-
         );
-
     }
 
-
-    // ==============================
     // MAIN APPLICATION
-    // ==============================
-
     return (
-
         <div className="app">
-
             <Sidebar
                 activePage={activePage}
                 setActivePage={setActivePage}
             />
 
             <div className="main-area">
-
-                <Header
-                    onLogout={handleLogout}
-                />
+                <Header onLogout={handleLogout} />
 
                 <main className="content">
-
                     {activePage === "dashboard" && (
-
                         <Dashboard />
-
                     )}
 
                     {activePage === "architecture" && (
-
                         <Architecture />
-
                     )}
 
                     {activePage === "dependencies" && (
-
                         <Dependencies />
-
                     )}
 
                     {activePage === "api-explorer" && (
-
                         <ApiExplorer />
-
                     )}
+
                     {activePage === "call-flows" && (
-
                         <CallFlows />
-
                     )}
+
                     {activePage === "impact-analysis" && (
-
                         <ImpactAnalysis />
-
                     )}
+
                     {activePage === "projects" && (
-  <Projects setActivePage={setActivePage} />
-)}
-{activePage === "ai-assistant" && (
-    <AIAssistant />
-)}
-{activePage === "visualizations" && (
-    <Visualizations />
-)}
+                        <Projects setActivePage={setActivePage} />
+                    )}
+
+                    {activePage === "ai-assistant" && (
+                        <AIAssistant />
+                    )}
+
+                    {activePage === "visualizations" && (
+                        <Visualizations />
+                    )}
                 </main>
-
             </div>
-
         </div>
-
     );
-
 }
 
 export default App;

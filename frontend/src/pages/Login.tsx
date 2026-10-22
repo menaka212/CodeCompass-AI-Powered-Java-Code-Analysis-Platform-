@@ -3,13 +3,14 @@ import { useState, type FormEvent } from "react";
 
 interface LoginProps {
     onLogin: () => void;
+    onRegister: () => void;
 }
 
 const API_BASE_URL = (
     import.meta.env.VITE_API_BASE_URL || "http://localhost:8080"
 ).replace(/\/+$/, "");
 
-function Login({ onLogin }: LoginProps) {
+function Login({ onLogin, onRegister }: LoginProps) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
@@ -97,9 +98,15 @@ function Login({ onLogin }: LoginProps) {
 
                 <form onSubmit={handleLogin}>
                     <div className="login-form-group">
-                        <label htmlFor="login-email">Email address</label>
+                        <label htmlFor="login-email">
+                            Email address
+                        </label>
+
                         <div className="login-input-wrapper">
-                            <span className="login-input-icon" aria-hidden="true">
+                            <span
+                                className="login-input-icon"
+                                aria-hidden="true"
+                            >
                                 <svg viewBox="0 0 24 24" fill="none">
                                     <rect
                                         x="3"
@@ -136,9 +143,15 @@ function Login({ onLogin }: LoginProps) {
                     </div>
 
                     <div className="login-form-group">
-                        <label htmlFor="login-password">Password</label>
+                        <label htmlFor="login-password">
+                            Password
+                        </label>
+
                         <div className="login-input-wrapper">
-                            <span className="login-input-icon" aria-hidden="true">
+                            <span
+                                className="login-input-icon"
+                                aria-hidden="true"
+                            >
                                 <svg viewBox="0 0 24 24" fill="none">
                                     <rect
                                         x="4"
@@ -257,6 +270,24 @@ function Login({ onLogin }: LoginProps) {
                     <span className="login-status-dot" />
                     Secure authentication
                 </div>
+
+                <p style={{ textAlign: "center", marginTop: "20px" }}>
+                    Don't have an account?{" "}
+                    <button
+                        type="button"
+                        onClick={onRegister}
+                        style={{
+                            background: "none",
+                            border: "none",
+                            color: "inherit",
+                            cursor: "pointer",
+                            fontWeight: 600,
+                            textDecoration: "underline",
+                        }}
+                    >
+                        Create account
+                    </button>
+                </p>
             </section>
 
             <p className="login-bottom-text">
