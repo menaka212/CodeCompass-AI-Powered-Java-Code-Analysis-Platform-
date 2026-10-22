@@ -3,7 +3,7 @@
 .idea
 .vscode
 *.log
-src
+target
 .mvn
 mvnw
 mvnw.cmd
