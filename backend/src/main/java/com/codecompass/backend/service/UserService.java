@@ -45,7 +45,7 @@ public class UserService {
     }
 public String login(LoginRequest request) {
 
-    System.out.println("LOGIN EMAIL RECEIVED: [" + request.getEmail() + "]");
+   
 
     User user = userRepository.findByEmail(request.getEmail())
             .orElseThrow(() ->

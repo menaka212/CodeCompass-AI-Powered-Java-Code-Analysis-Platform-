@@ -1,5 +1,5 @@
 package com.codecompass.backend.security;
-
+import org.springframework.beans.factory.annotation.Value;
 import java.util.Arrays;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +14,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 public class SecurityConfig {
+    @Value("${app.cors.allowed-origin:http://localhost:5173}")
+private String allowedOrigin;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -34,7 +36,7 @@ public class SecurityConfig {
                 new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                Arrays.asList("http://localhost:5173")
+                Arrays.asList(allowedOrigin)
         );
 
         configuration.setAllowedMethods(
@@ -72,31 +74,31 @@ public class SecurityConfig {
             throws Exception {
 
         http
-            .csrf(csrf -> csrf.disable())
+    .csrf(csrf -> csrf.disable())
 
-            .cors(cors -> cors.configurationSource(
-                    corsConfigurationSource()
-            ))
+    .cors(cors -> cors.configurationSource(
+            corsConfigurationSource()
+    ))
 
-            .authorizeHttpRequests(auth -> auth
+    .formLogin(form -> form.disable())
+    .httpBasic(basic -> basic.disable())
 
-                .requestMatchers(
-                    "/api/auth/register",
-                    "/api/auth/login",
-                    "/api/analysis/explain",
-                    "/api/analysis/repository",
-                    "/api/projects/github/architecture/explain"
+    .authorizeHttpRequests(auth -> auth
+        .requestMatchers(
+            "/api/auth/register",
+            "/api/auth/login",
+            "/api/analysis/explain",
+            "/api/analysis/repository",
+            "/api/projects/github/architecture/explain"
+        ).permitAll()
+        .anyRequest().authenticated()
+    )
 
-                ).permitAll()
+    .addFilterBefore(
+        jwtAuthenticationFilter,
+        UsernamePasswordAuthenticationFilter.class
+    );
 
-                .anyRequest().authenticated()
-            )
-
-            .addFilterBefore(
-                jwtAuthenticationFilter,
-                UsernamePasswordAuthenticationFilter.class
-            );
-
-        return http.build();
+return http.build();
     }
 }
