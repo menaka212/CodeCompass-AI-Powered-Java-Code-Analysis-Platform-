@@ -2,6 +2,13 @@
 
 CodeCompass is an AI-powered Java code analysis platform designed to help developers understand and explore the structure of a Java codebase. It analyzes a GitHub repository and presents useful visualizations and insights through a web-based interface.
 
+## 🚀 Live Demo
+
+**Frontend:** [Try CodeCompass](https://code-compass-ai-powered-java-code-a.vercel.app/)
+
+**Backend API:** [CodeCompass Backend](https://codecompass-backend-2bfj.onrender.com)
+
+
 ## 🚀 Key Features
 
 ### 📐 Architecture Map
